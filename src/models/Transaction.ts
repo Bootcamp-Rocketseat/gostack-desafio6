@@ -24,17 +24,14 @@ class Transaction {
   @Column()
   value: number;
 
-  @Column()
-  category_id: string;
-
-  @OneToOne(() => Category)
+  @OneToOne(() => Category, { eager: true })
   @JoinColumn({ name: 'category_id' })
   category: Category;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ select: false })
   created_at: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ select: false })
   updated_at: Date;
 }
 
